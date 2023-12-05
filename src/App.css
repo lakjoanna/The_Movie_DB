@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 } */
+
+input[type="text"] {
+  width: 100px;
+  background-color: transparent;
+  transition: width 2s ease-in-out; 
+  margin:10px;
+}
+
+input[type="text"]:focus {
+  width: 50%;
+  color: black;
+}
