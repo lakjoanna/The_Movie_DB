@@ -1,49 +1,66 @@
-import {useState, useEffect} from 'react';
-
+import {useState, useEffect, useCallback} from 'react';
 import MovieCard from '../components/MovieCard'
 
 const MoviesPage = () => {
-
     const [movies, setMovies] = useState([]);
-    const [searchMovies, setSearchMovies] = useState('');
+    const [searchMoviesText, setSearchMoviesText] = useState('');
 
     useEffect( () => {
-        fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=5a2f5760a49bb49f2c0d43b69322efa8")
-        .then((res) => res.json())
-        .then(data=>{
-          console.log(data)
-          setMovies(data.results)
-        })
-      }, [])
-    
-      const searchButton = async(e)=>{
-        e.preventDefault();
-        try{
-          const url ='https://api.themoviedb.org/3/search/movie?api_key=5a2f5760a49bb49f2c0d43b69322efa8&query=${searchMovies}';
-          const res = await fetch(url);
-          const data = await res.json();
-          console.log(data)
-          setMovies(data.results)
+        getMovies()
+    }, [])
+
+    const getMovies = useCallback(async () => {
+        const url = "https://api.themoviedb.org/3/movie/top_rated?api_key=5a2f5760a49bb49f2c0d43b69322efa8"
+        const res = await fetch(url)
+        if(!res.ok)
+        {
+            return
         }
-        catch(e){
-          console.log(e)
+
+        const data = await res.json()
+        setMovies(data.results)
+    }, [setMovies])
+
+    const getMoviesSearch = useCallback(async (text) => {
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=5a2f5760a49bb49f2c0d43b69322efa8&query=${text}`;
+        const res = await fetch(url);
+        if(!res.ok)
+        {
+            return
         }
-      }
+
+        const data = await res.json();
+        setMovies(data.results)
+    }, [searchMoviesText, setMovies])
       
-      const chandleClick=(e)=>{
-        setSearchMovies(e.target.value)
-      }
+    const handleInputSearchMovie = useCallback(async (e) => {
+        const text = e.target.value
+
+        if(text)
+        {
+            await getMoviesSearch(text)
+        }
+        else
+        {
+            await getMovies()
+        }
+    }, [])
 
     return <div>
-    <form className="w-85 text-end" onSubmit={searchButton}>
-      <input type="text" className="border"  placeholder="Search movie" value={searchMovies} onChange={chandleClick}/>
-    </form>
-    {
-        movies.map((movie, index) =>
-            <MovieCard key={index} {...movie}/>
-        )
-    }
-</div>
+        <input type="text"
+            name=""
+            className="border"
+            placeholder="Search movie" 
+            value={searchMoviesText}
+            onInput={handleInputSearchMovie}
+            onChange={(e) => setSearchMoviesText(e.target.value)}
+        />
+        {
+            movies.map((movie, index) =>
+                <MovieCard key={index} {...movie}/>
+            )
+        }
+    </div>
 }
 
 export default MoviesPage

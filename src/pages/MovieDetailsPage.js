@@ -28,8 +28,8 @@ const MovieDetailsPage = () => {
         <h1>{movieDetails.title}</h1>
         <p>{movieDetails.popularity}</p>
         <p>{movieDetails.vote_count}</p>
-        <p>{movieDetails.genres.map((x) => x.name).join(", ")}</p>
-        <p>{movieDetails.production_countries.map((x) => x.name).join(", ")}</p>
+        <p>{movieDetails.genres?.map((x) => x.name).join(", ")}</p>
+        <p>{movieDetails.production_countries?.map((x) => x.name).join(", ")}</p>
         <p>{movieDetails.overview}</p>
     </div>
 }
