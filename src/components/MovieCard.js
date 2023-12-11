@@ -12,15 +12,9 @@ const MovieCard = ({ id, poster_path, title, popularity, vote_count}) => {
 
     return(
       <Card onClick={handleClickCard} data-bs-theme="dark" className='moviecard'>
-        <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+        <Card.Img variant="top" style={{width: "100%", height:"auto"}} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
-          <Card.Text>
-          {popularity}
-          </Card.Text>
-          <Card.Text>
-          {vote_count}
-          </Card.Text>
+          <Card.Title className="text-center pb-1"> {title}</Card.Title>
         </Card.Body>
       </Card>
     )

@@ -33,11 +33,11 @@ const MovieDetailsPage = () => {
                   <Col sm={12} md={6} lg={8} xl={8} xxl={8} >
                     <Card.Body className="m-4">
                     <Card.Title className="text-uppercase mb-5 text-center"><h1>{movieDetails.title}</h1></Card.Title>
-                    <Card.Text className="mt-4"> <h6>Popularity </h6> {movieDetails.popularity}</Card.Text>
+                    <Card.Text className="mt-4"> <h6>Popularity</h6> {movieDetails.popularity}</Card.Text>
                     <Card.Text className="mt-4"> <h6>Vote count</h6> {movieDetails.vote_count}</Card.Text>
                     <Card.Text className="mt-4"> <h6>Production</h6> {movieDetails.production_countries?.map((x) => x.name).join(", ")}</Card.Text>
                     <Card.Text className="mt-5">  {movieDetails.genres?.map((x) => x.name).join(", ")}</Card.Text>
-                    <Card.Text className="mt-5"> <h4>Overview </h4> {movieDetails.overview}</Card.Text>
+                    <Card.Text className="mt-5"> <h4>Overview</h4> {movieDetails.overview}</Card.Text>
                     </Card.Body>
                   </Col>
                 </Row>

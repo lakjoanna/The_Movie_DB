@@ -51,7 +51,7 @@ const MoviesPage = () => {
     <>
       <Navbar bg="dark" expand="lg" variant="dark">
         <Container fluid className="mt-1 mb-1">
-          <Navbar.Brand>TMDB - Top Rated Movies</Navbar.Brand>
+          <Navbar.Brand>TMDB Top Rated Movies</Navbar.Brand>
           <Form inline>
             <Row>
               <Col xs="auto">
