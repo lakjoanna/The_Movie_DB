@@ -1,0 +1,10 @@
+.layout-container {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-image: url("../gfx/movies.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}

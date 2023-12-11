@@ -1,20 +1,28 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
+import "./MovieCard.css"
 
 const MovieCard = ({ id, poster_path, title, popularity, vote_count}) => {
     const navigate = useNavigate()
 
     const handleClickCard = useCallback(() => {
-        navigate(`/movie/${id}`)
-    },[navigate])
+      navigate(`/movie/${id}`)
+    },[navigate, id])
 
     return(
-        <div onClick={handleClickCard}>
-            <img src={`https://image.tmdb.org/t/p/w500/${poster_path}`}></img>
-            <h1>{title}</h1>
-            <p>{popularity}</p>
-            <p>{vote_count}</p>
-        </div>
+      <Card onClick={handleClickCard} data-bs-theme="dark" className='moviecard'>
+        <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+        <Card.Body>
+          <Card.Title>{title}</Card.Title>
+          <Card.Text>
+          {popularity}
+          </Card.Text>
+          <Card.Text>
+          {vote_count}
+          </Card.Text>
+        </Card.Body>
+      </Card>
     )
 }
 

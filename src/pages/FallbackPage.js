@@ -1,7 +1,7 @@
 const FallbackPage = () => {
-    return <div>
-        <p>Initial Load...</p>
-    </div>
+    return <>
+        <h2>Initial Load...</h2>
+    </>
 }
 
 export default FallbackPage

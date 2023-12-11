@@ -1,30 +1,32 @@
-import React,{useState, useEffect} from 'react';
 import {
   createBrowserRouter,
-  redirect,
   RouterProvider,
 } from "react-router-dom";
 
 import MoviesPage from "./pages/MoviesPage"
 import MovieDetailsPage from "./pages/MovieDetailsPage"
 import FallbackPage from "./pages/FallbackPage"
+import MainLayout from './layouts/MainLayout';
 
-// import SearchButton from './SearchButton';
 import "bootstrap/dist/css/bootstrap.min.css";
-import './App.css';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    Component: MoviesPage
-  },
-  {
-    path: "/movie/:id",
-    Component: MovieDetailsPage
+    Component: MainLayout,
+    children: [
+      {
+        path: "/",
+        Component: MoviesPage
+      },
+      {
+        path: "/movie/:id",
+        Component: MovieDetailsPage
+      }
+    ]
   }
 ])
 
-function App() {
+const App = () => {
   return (
     <RouterProvider
       router={router}
